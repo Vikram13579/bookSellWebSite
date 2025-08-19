@@ -6,12 +6,15 @@ import com.booksale.entity.User;
 import com.booksale.repository.BookRepository;
 import com.booksale.repository.CartItemRepository;
 import com.booksale.repository.UserRepository;
+import com.booksale.dto.CartItemResponse;
+import com.booksale.dto.BookResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CartService {
@@ -28,7 +31,7 @@ public class CartService {
     }
 
     @Transactional
-    public CartItem addToCart(Long bookId, int quantity) {
+    public CartItemResponse addToCart(Long bookId, int quantity) {
         User user = getCurrentUser();
         Book book = bookRepository.findById(bookId).orElseThrow();
         CartItem item = cartItemRepository.findAll().stream()
@@ -39,7 +42,8 @@ public class CartService {
         } else {
             item.setQuantity(item.getQuantity() + quantity);
         }
-        return cartItemRepository.save(item);
+        CartItem savedItem = cartItemRepository.save(item);
+        return toCartItemResponse(savedItem);
     }
 
     @Transactional
@@ -47,15 +51,41 @@ public class CartService {
         cartItemRepository.deleteById(itemId);
     }
 
-    public List<CartItem> getCart() {
+    public List<CartItemResponse> getCart() {
         User user = getCurrentUser();
-        return cartItemRepository.findAll().stream().filter(ci -> ci.getUser().getId().equals(user.getId())).toList();
+        return cartItemRepository.findAll().stream()
+            .filter(ci -> ci.getUser().getId().equals(user.getId()))
+            .map(this::toCartItemResponse)
+            .collect(Collectors.toList());
     }
 
     @Transactional
-    public CartItem updateCartItem(Long itemId, int quantity) {
+    public CartItemResponse updateCartItem(Long itemId, int quantity) {
         CartItem item = cartItemRepository.findById(itemId).orElseThrow();
         item.setQuantity(quantity);
-        return cartItemRepository.save(item);
+        CartItem savedItem = cartItemRepository.save(item);
+        return toCartItemResponse(savedItem);
+    }
+
+    private CartItemResponse toCartItemResponse(CartItem cartItem) {
+        CartItemResponse dto = new CartItemResponse();
+        dto.setId(cartItem.getId());
+        dto.setQuantity(cartItem.getQuantity());
+        dto.setBook(toBookResponse(cartItem.getBook()));
+        return dto;
+    }
+
+    private BookResponse toBookResponse(Book book) {
+        if (book == null) return null;
+        BookResponse dto = new BookResponse();
+        dto.setId(book.getId());
+        dto.setTitle(book.getTitle());
+        dto.setAuthor(book.getAuthor());
+        dto.setPrice(book.getPrice());
+        dto.setDescription(book.getDescription());
+        dto.setStockQuantity(book.getStockQuantity());
+        dto.setImageUrl(book.getImageUrl());
+        dto.setIsbn(book.getIsbn());
+        return dto;
     }
 } 

@@ -4,14 +4,19 @@
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/entity/User.java
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/controller/AuthController.java
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/service/UserService.java
+/home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/controller/ImageController.java
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/dto/RegisterRequest.java
+/home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/service/GoogleAuthService.java
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/entity/PopularBook.java
+/home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/dto/GoogleAuthRequest.java
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/repository/OrderItemRepository.java
+/home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/dto/CartItemResponse.java
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/controller/OrderController.java
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/security/SecurityConfig.java
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/entity/Book.java
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/repository/UserRepository.java
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/controller/PopularBookController.java
+/home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/dto/PopularBookResponse.java
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/security/JwtAuthFilter.java
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/controller/UserController.java
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/repository/CartItemRepository.java
@@ -21,6 +26,7 @@
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/repository/BookRepository.java
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/BookSaleApplication.java
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/service/OrderService.java
+/home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/dto/BookResponse.java
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/security/CustomUserDetailsService.java
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/service/PopularBookService.java
 /home/rer/Downloads/BooksOnSale/bookSaleApplication/src/main/java/com/booksale/repository/PopularBookRepository.java
