@@ -15,8 +15,12 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping
-    public ResponseEntity<List<BookResponse>> getAllBooks() {
-        return ResponseEntity.ok(bookService.getAllBooks());
+    public ResponseEntity<List<BookResponse>> getAllBooks(@RequestParam(value = "search", required = false) String search) {
+        if (search != null && !search.isEmpty()) {
+            return ResponseEntity.ok(bookService.searchBooks(search));
+        } else {
+            return ResponseEntity.ok(bookService.getAllBooks());
+        }
     }
 
     @GetMapping("/{id}")

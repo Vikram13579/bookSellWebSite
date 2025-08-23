@@ -7,18 +7,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service
 public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
     public List<BookResponse> getAllBooks() {
-        return bookRepository.findAll().stream().map(this::toBookResponse).collect(Collectors.toList());
+        log.debug("Getting all books from repository");
+        List<Book> books = bookRepository.findAll();
+        log.debug("Found {} books", books.size());
+        return books.stream().map(this::toBookResponse).collect(Collectors.toList());
+    }
+
+    public List<BookResponse> searchBooks(String query) {
+        log.debug("Searching books with query: {}", query);
+        List<Book> books = bookRepository.findByTitleContainingIgnoreCaseOrAuthorContainingIgnoreCaseOrDescriptionContainingIgnoreCase(query, query, query);
+        log.debug("Found {} books for query '{}'", books.size(), query);
+        return books.stream().map(this::toBookResponse).collect(Collectors.toList());
     }
 
     public BookResponse getBookById(Long id) {
-        Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
+        log.debug("Fetching book by id: {}", id);
+        Book book = bookRepository.findById(id)
+            .orElseThrow(() -> {
+                log.error("Book not found with id: {}", id);
+                return new RuntimeException("Book not found");
+            });
+        log.debug("Fetched book: {}", book.getTitle());
         return toBookResponse(book);
     }
 
