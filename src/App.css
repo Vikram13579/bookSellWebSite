@@ -1,0 +1,93 @@
+/* App.css */
+.App {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 32px;
+  background: #f7f7fa;
+  min-height: 100vh;
+}
+
+h1 {
+  color: #2d2d2d;
+  margin-bottom: 24px;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+input[type="text"] {
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  font-size: 1rem;
+  padding: 8px 12px;
+  width: 320px;
+  transition: border 0.2s;
+}
+
+input[type="text"]:focus {
+  border: 1.5px solid #007bff;
+  outline: none;
+}
+
+button[type="submit"] {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+  background: #0056b3;
+}
+
+.book-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 18px 16px 16px 16px;
+  width: 240px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: box-shadow 0.2s;
+}
+
+.book-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+}
+
+.book-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.2rem;
+  color: #222;
+}
+
+.book-card p {
+  margin: 4px 0;
+  color: #444;
+  font-size: 0.98rem;
+}
+
+@media (max-width: 700px) {
+  .App {
+    padding: 8px;
+  }
+  .book-card {
+    width: 95vw;
+    min-width: 0;
+  }
+  input[type="text"] {
+    width: 90vw;
+    min-width: 0;
+  }
+}
