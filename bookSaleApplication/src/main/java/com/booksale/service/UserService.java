@@ -23,8 +23,8 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @Autowired
-    private JwtUtil jwtUtil;
+     @Autowired
+     private JwtUtil jwtUtil;
     @Autowired
     private AuthenticationManager authenticationManager;
 
